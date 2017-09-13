@@ -1,6 +1,7 @@
 <?php
-require_once("Controller.class.php");
-class UsersController extends Controller {
+namespace core;
+
+class UsersController extends \core\Controller {
   public function getPage()
   {
     //echo "<h1>Users page</h1>";
