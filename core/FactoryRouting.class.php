@@ -1,29 +1,21 @@
 <?php
+namespace core;
 class FactoryRouting 
 {
-    static function getController($uri) : Controller
+    static function getController($uri) : \core\Controller
     {
       $parts = explode("/", $uri);
       
       if (!empty($parts[1]) )
       {
-       $cname = UCFirst($parts[1])."Controller";
+        
+       $cname = "\\core\\".UCFirst($parts[1])."Controller";
        
-        if (file_exists("core/".$cname.".class.php"))
-        {
-           require_once("core/{$cname}.class.php");
-          
-          if (class_exists($cname))
-          {
-              return new $cname();
-          }
-        }
+       return new $cname();
         
       }
-     
-      
-      require_once("core/C404Controller.class.php");
-      return new C404Controller();
+
+      return new \core\C404Controller();
       
       
     }
